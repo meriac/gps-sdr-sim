@@ -2240,6 +2240,7 @@ int main(int argc, char *argv[])
 
 				// Update code phase and data bit counters
 				computeCodePhase(&chan[i], rho, 0.1);
+				fprintf(stderr, "PRN(%02i) f_carr[Hz]=%8.2f code_phase[us]=%4.2f\n",sv+1, -chan[i].f_carr, chan[i].code_phase);
 #ifndef FLOAT_CARR_PHASE
 				chan[i].carr_phasestep = (int)round(512.0 * 65536.0 * chan[i].f_carr * delt);
 #endif
@@ -2419,7 +2420,7 @@ int main(int argc, char *argv[])
 		grx = incGpsTime(grx, 0.1);
 
 		// Update time counter
-		fprintf(stderr, "\rTime into run = %4.1f", subGpsTime(grx, g0));
+		fprintf(stderr, "\nTime into run = %4.1f\n", subGpsTime(grx, g0));
 		fflush(stdout);
 	}
 
